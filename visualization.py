@@ -3,7 +3,7 @@ import tensorflow
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.utils import get_file
 
-#from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
 from tf_explain.core.grad_cam import GradCAM
 
@@ -20,12 +20,16 @@ import glob
 import os
 
 #Select a model to use, in this case VGG16
-model = VGG16(weights='imagenet', include_top=True, input_tensor=None, input_shape=None, pooling=None, classes=1000)
+#model = VGG16(weights='imagenet', include_top=True, input_tensor=None, input_shape=None, pooling=None, classes=1000)
+model = ResNet50()
+print(model.summary())
 #Check with 'print(model.summary())', in this case it is "block5_conv3"
-last_conv_layer_name = "block5_conv3"
+#last_conv_layer_name = "block5_conv3"
+last_conv_layer_name = "conv5_block3_out"
 #Must include layers between last convolutional layer and prediction layer
 #Layer names can be found through 'print(model.summary())'
-classifier_layer_names = ["block5_pool", "flatten", "fc1", "fc2", "predictions"]
+#classifier_layer_names = ["block5_pool", "flatten", "fc1", "fc2", "predictions"]
+classifier_layer_names = ["avg_pool", "predictions"]
 
 #This function is called from 'make_gradcam_heatmap'
 #Takes iaage_path from 'get_command_line_arguments', turns into it an array
