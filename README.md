@@ -1,3 +1,11 @@
+## Модели
+
+- https://keras.io/api/applications/
+
+| ResNet50 | VGG16 |
+| :---: | :---: |
+| ![ResNet50](kitchen-output-ResNet50.gif) | ![VGG16](kitchen-output-VGG16.gif) |
+
 ## Команды
 
 Создание фреймов (изображений JPEG) из файла видео (MOV):
